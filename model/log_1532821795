@@ -1,0 +1,4 @@
+# log_file=model/log_1532821795
+# Start step 0, lr 0.001, Sun Jul 29 02:49:59 2018
+  step 100 lr 0.001 step-time 0.62s wps 9.82K ppl 1193.01 gN 32.85 bleu 0.00, Sun Jul 29 02:51:01 2018
+  step 200 lr 0.001 step-time 0.54s wps 11.14K ppl 500.28 gN 13.89 bleu 0.00, Sun Jul 29 02:51:55 2018
