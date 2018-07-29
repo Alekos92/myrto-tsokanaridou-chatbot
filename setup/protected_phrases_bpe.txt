@@ -1,7 +1,7 @@
-# List of regex-based sentences that bypassing tokenization
+# List of regex-based sentences that bypass tokenization
 # Matching sentences will remain untouched after tokenization
 # Any matched spaces will be removed
-# Make sure to return only one group as only first grup is used (rest of them are ignored)
+# Make sure to return only one group as only first group is used (rest of them are ignored)
 # Rules for bpe/wpm tokenizer
 
 #(?:^|\s)(?i:(some_protected_phrase))
