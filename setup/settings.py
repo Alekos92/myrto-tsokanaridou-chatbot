@@ -34,7 +34,7 @@ preprocessing = {
 
     # Whether to use BPE/WPM-like tokenization, or standard one
     'use_bpe': True,
-    
+
     # Whether to use:
     # - embedded detokenizer (increases number of vocab tokens, but is more accurate)
     # - external/rule-based detokenizer (based of a bunch of rules and regular expressions)
@@ -52,8 +52,8 @@ preprocessing = {
     # - automatically sets number of steps and restarts training every epoch with changed learning rate
     # - ends training after set number of epochs
     # Set to None to disable
-    'epochs': [0.001, 0.0001, 0.00001],
-
+    # 'epochs': [0.001, 0.0001, 0.00001],
+    'epochs': None, # use training scheme as defined by hyperparameters
 
     ## You don't normally need to change anything below (internal settings)
 
