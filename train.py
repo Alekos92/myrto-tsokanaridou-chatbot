@@ -32,7 +32,7 @@ def train():
         except:
             initial_epoch = 0
 
-        # Iterate thru epochs
+        # Iterate through epochs
         for epoch, learning_rate in enumerate(preprocessing['epochs']):
 
             # Check if model already passed that epoch

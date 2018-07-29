@@ -3,7 +3,8 @@ import os
 ## Internal path settings
 
 # Root package path (do not change if you're unsure about that change)
-package_path = ''
+# This change was necessary for me to get the test files working
+package_path = '/home/amandalios/myrto-tsokanaridou-chatbot/'
 
 # Model path
 out_dir = os.path.join(package_path, "model/")
