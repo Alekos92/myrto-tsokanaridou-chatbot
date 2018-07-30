@@ -4,7 +4,7 @@ import os
 
 # Root package path (do not change if you're unsure about that change)
 # This change was necessary for me to get the test files working
-package_path = '/home/amandalios/myrto-tsokanaridou-chatbot/'
+package_path = '/data/data1/users/amandalios/myrto-tsokanaridou-chatbot/'
 
 # Model path
 out_dir = os.path.join(package_path, "model/")
@@ -14,7 +14,6 @@ train_dir = os.path.join(package_path, "data/")
 
 # Raw data path (data to be prepared and tokenized)
 source_dir = os.path.join(package_path, "new_data/")
-
 
 ## Settings you can adjust
 
@@ -43,6 +42,7 @@ preprocessing = {
     'embedded_detokenizer': True,
 
     # Test sets' max size
+    # You should probably increase this to something more reasonable
     'test_size': 100,
 
     # Custom decaying scheme and training duration:
@@ -52,8 +52,8 @@ preprocessing = {
     # - automatically sets number of steps and restarts training every epoch with changed learning rate
     # - ends training after set number of epochs
     # Set to None to disable
-    # 'epochs': [0.001, 0.0001, 0.00001],
-    'epochs': None, # use training scheme as defined by hyperparameters
+    'epochs': [0.001, 0.0001, 0.00001],
+    # 'epochs': None, # use training scheme as defined by hyperparameters
 
     ## You don't normally need to change anything below (internal settings)
 
@@ -87,28 +87,28 @@ hparams = {
     'attention': 'scaled_luong',
     'num_train_steps': 10000000,
     'num_layers': 2,
-#    'num_encoder_layers': 2,
-#    'num_decoder_layers': 2,
+    #    'num_encoder_layers': 2,
+    #    'num_decoder_layers': 2,
     'num_units': 512,
-#    'batch_size': 128,
-#    'override_loaded_hparams': True,
-#    'decay_scheme': 'luong234'
-#    'residual': True,
+    #    'batch_size': 128,
+    #    'override_loaded_hparams': True,
+    #    'decay_scheme': 'luong234'
+    #    'residual': True,
     'optimizer': 'adam',
     'encoder_type': 'bi',
     'learning_rate': 0.001,
     'beam_width': 20,
     'length_penalty_weight': 1.0,
     'num_translations_per_input': 20,
-#    'num_keep_ckpts': 5,
+    #    'num_keep_ckpts': 5,
 
     ## You don't normally need to change anything below (internal settings)
     'src': 'from',
     'tgt': 'to',
-    'vocab_prefix': os.path.join(train_dir, "vocab"),
-    'train_prefix': os.path.join(train_dir, "train"),
-    'dev_prefix': os.path.join(train_dir, "tst2012"),
-    'test_prefix': os.path.join(train_dir, "tst2013"),
+    'vocab_prefix': os.path.join(train_dir, "vocab_mixed_subreddits"),
+    'train_prefix': os.path.join(train_dir, "train_mixed_subreddits"),
+    'dev_prefix': os.path.join(train_dir, "validate_mixed_subreddits"),
+    'test_prefix': os.path.join(train_dir, "test_mixed_subreddits"),
     'out_dir': out_dir,
     'share_vocab': preprocessing['joined_vocab'],
 }
@@ -221,7 +221,6 @@ score = {
 
     'show_score_modifiers': False,
 }
-
 
 ######## DO NOT TOUCH ANYTHING BELOW ########
 
