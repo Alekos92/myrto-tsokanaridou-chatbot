@@ -6,6 +6,10 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.manifold import MDS
 
+from nltk.stem.snowball import SnowballStemmer
+
+st = SnowballStemmer('english')
+
 with open('words.pickle', 'rb') as handle:
     d = pickle.load(handle)
 
@@ -33,7 +37,12 @@ word_list = [
 pca = PCA(n_components=2)
 # mds = MDS(n_components=2)
 
-transformed_word_list = pca.fit_transform([d[w] if w in d else [0, 0, 0] for w in word_list])
+l = [str((w, d[w])) + '\n' if w in d else None for w in [st.stem(w) for w in word_list]]
+
+for x in l:
+    print(x)
+
+transformed_word_list = pca.fit_transform([d[w] if w in d else [0, 0, 0] for w in [st.stem(w) for w in word_list]])
 
 plt.scatter(transformed_word_list[:, 0], transformed_word_list[:, 1])
 
