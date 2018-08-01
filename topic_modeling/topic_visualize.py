@@ -30,10 +30,10 @@ word_list = [
     'impressive'
 ]
 
-# pca = PCA(n_components=2)
-mds = MDS(n_components=2)
+pca = PCA(n_components=2)
+# mds = MDS(n_components=2)
 
-transformed_word_list = mds.fit_transform([d[w] if w in d else [0, 0, 0] for w in word_list])
+transformed_word_list = pca.fit_transform([d[w] if w in d else [0, 0, 0] for w in word_list])
 
 plt.scatter(transformed_word_list[:, 0], transformed_word_list[:, 1])
 

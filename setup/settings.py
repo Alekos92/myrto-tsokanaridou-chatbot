@@ -7,7 +7,7 @@ import os
 package_path = '/data/data1/users/amandalios/myrto-tsokanaridou-chatbot/'
 
 # Model path
-out_dir = os.path.join(package_path, "model/")
+out_dir = os.path.join(package_path, "new_model/")
 
 # Training data path
 train_dir = os.path.join(package_path, "data/")
@@ -43,7 +43,7 @@ preprocessing = {
 
     # Test sets' max size
     # You should probably increase this to something more reasonable
-    'test_size': 100,
+    'test_size': 1000,
 
     # Custom decaying scheme and training duration:
     # - trains model for certain number of epochs (number of list entries)
@@ -90,7 +90,7 @@ hparams = {
     #    'num_encoder_layers': 2,
     #    'num_decoder_layers': 2,
     'num_units': 512,
-    #    'batch_size': 128,
+    # 'batch_size': 128,
     #    'override_loaded_hparams': True,
     #    'decay_scheme': 'luong234'
     #    'residual': True,
@@ -107,8 +107,8 @@ hparams = {
     'tgt': 'to',
     'vocab_prefix': os.path.join(train_dir, "vocab_mixed_subreddits"),
     'train_prefix': os.path.join(train_dir, "train_mixed_subreddits"),
-    'dev_prefix': os.path.join(train_dir, "validate_mixed_subreddits"),
-    'test_prefix': os.path.join(train_dir, "test_mixed_subreddits"),
+    'dev_prefix': os.path.join(train_dir, "validate_mixed_subreddits_1000"),
+    'test_prefix': os.path.join(train_dir, "test_mixed_subreddits_1000"),
     'out_dir': out_dir,
     'share_vocab': preprocessing['joined_vocab'],
 }
