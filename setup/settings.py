@@ -7,7 +7,7 @@ import os
 package_path = '/data/data1/users/amandalios/myrto-tsokanaridou-chatbot/'
 
 # Model path
-out_dir = os.path.join(package_path, "new_model/")
+out_dir = os.path.join(package_path, "new_new_model/")
 
 # Training data path
 train_dir = os.path.join(package_path, "data/")
