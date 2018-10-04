@@ -246,8 +246,8 @@ class BaseModel(object):
                 share_vocab=hparams.share_vocab,
                 src_vocab_size=self.src_vocab_size,
                 tgt_vocab_size=self.tgt_vocab_size,
-                src_embed_size=512,
-                tgt_embed_size=512,
+                src_embed_size=hparams.num_units,
+                tgt_embed_size=hparams.num_units,
                 num_partitions=hparams.num_embeddings_partitions,
                 src_vocab_file=hparams.src_vocab_file,
                 tgt_vocab_file=hparams.tgt_vocab_file,
@@ -399,23 +399,23 @@ class BaseModel(object):
                     self.embedding_decoder, target_input)
 
                 #########
-                expanded_target_input = tf.expand_dims(target_input, axis=-1)
-
-                with open(
-                        '/data/data1/users/amandalios/myrto-tsokanaridou-chatbot/topic_modeling/ids_to_topic_vectors.pickle',
-                        'rb') as handle:
-                    mapper = pickle.load(handle)
-
-                vf = np.vectorize(lambda id, pos: np.float32(mapper[id][pos]))
-
-                def concat_coord(x):
-                    return np.concatenate((vf(x, 0), vf(x, 1), vf(x, 2)), axis=2)
-
-                topic_vectors = tf.py_func(concat_coord, [expanded_target_input], dtype)
-
-                decoder_emb_inp = tf.concat([topic_vectors, decoder_emb_inp], axis=2)
-                # decoder_emb_inp = tf.Print(decoder_emb_inp, [decoder_emb_inp], message='Decoder input: ', summarize=100)
-                decoder_emb_inp.set_shape((None, None, 515))
+                # expanded_target_input = tf.expand_dims(target_input, axis=-1)
+                #
+                # with open(
+                #         '/home/amandalios/myrto-tsokanaridou-chatbot/topic_modeling/ids_to_topic_vectors.pickle',
+                #         'rb') as handle:
+                #     mapper = pickle.load(handle)
+                #
+                # vf = np.vectorize(lambda id, pos: np.float32(mapper[id][pos]))
+                #
+                # def concat_coord(x):
+                #     return np.concatenate((vf(x, 0), vf(x, 1), vf(x, 2)), axis=2)
+                #
+                # topic_vectors = tf.py_func(concat_coord, [expanded_target_input], dtype)
+                #
+                # decoder_emb_inp = tf.concat([topic_vectors, decoder_emb_inp], axis=2)
+                # # decoder_emb_inp = tf.Print(decoder_emb_inp, [decoder_emb_inp], message='Decoder input: ', summarize=100)
+                # decoder_emb_inp.set_shape((None, None, 515))
 
                 ###########
 
@@ -600,23 +600,28 @@ class Model(BaseModel):
                 self.embedding_encoder, source)
 
             ###################
-            expanded_source = tf.expand_dims(source, axis=-1)
+            # expanded_source = tf.expand_dims(source, axis=-1)
+            #
+            # with open(
+            #         '/home/amandalios/myrto-tsokanaridou-chatbot/topic_modeling/ids_to_topic_vectors.pickle',
+            #         'rb') as handle:
+            #     mapper = pickle.load(handle)
+            #
+            # vf = np.vectorize(lambda id, pos: np.float32(mapper[id][pos]))
+            #
+            # def concat_coord(x):
+            #     return np.concatenate((vf(x, 0), vf(x, 1), vf(x, 2)), axis=2)
+            #
+            # topic_vectors = tf.py_func(concat_coord, [expanded_source], dtype)
+            #
+            # encoder_emb_inp = tf.concat([topic_vectors, encoder_emb_inp], axis=2)
+            # # encoder_emb_inp = tf.Print(encoder_emb_inp, [encoder_emb_inp], message='Encoder input: ', summarize=100)
+            # encoder_emb_inp.set_shape((None, None, 515))
 
-            with open(
-                    '/data/data1/users/amandalios/myrto-tsokanaridou-chatbot/topic_modeling/ids_to_topic_vectors.pickle',
-                    'rb') as handle:
-                mapper = pickle.load(handle)
-
-            vf = np.vectorize(lambda id, pos: np.float32(mapper[id][pos]))
-
-            def concat_coord(x):
-                return np.concatenate((vf(x, 0), vf(x, 1), vf(x, 2)), axis=2)
-
-            topic_vectors = tf.py_func(concat_coord, [expanded_source], dtype)
-
-            encoder_emb_inp = tf.concat([topic_vectors, encoder_emb_inp], axis=2)
-            # encoder_emb_inp = tf.Print(encoder_emb_inp, [encoder_emb_inp], message='Encoder input: ', summarize=100)
-            encoder_emb_inp.set_shape((None, None, 515))
+            #
+            # features = tf.constant(0.5, shape=[None, None, 3], dtype=tf.float32)
+            # encoder_emb_inp = tf.concat([encoder_emb_inp, features], axis=2)
+            # print('\n\nSHAPE\n\n {}'.format(encoder_emb_inp.shape))
 
             #############
 

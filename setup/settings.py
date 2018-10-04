@@ -4,7 +4,7 @@ import os
 
 # Root package path (do not change if you're unsure about that change)
 # This change was necessary for me to get the test files working
-package_path = '/data/data1/users/amandalios/myrto-tsokanaridou-chatbot/'
+package_path = '/data/data1/users/amandalios/myrto-tsokanaridou-chatbot'
 
 # Model path
 out_dir = os.path.join(package_path, "new_new_model/")
@@ -89,7 +89,7 @@ hparams = {
     'num_layers': 2,
     #    'num_encoder_layers': 2,
     #    'num_decoder_layers': 2,
-    'num_units': 512,
+    'num_units': 515,
     # 'batch_size': 128,
     #    'override_loaded_hparams': True,
     #    'decay_scheme': 'luong234'
